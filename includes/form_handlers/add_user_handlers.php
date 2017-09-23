@@ -106,7 +106,8 @@ if (isset($_POST['add_user'])) {
 		//Generate username by concatenating FirstName amd LastName
 		$username = strtolower($fname . "_" . $lname);
 		//$query = "INSERT INTO `users` (`username`, `name`, `password`, `email`) VALUES ( '$username', '$fname', '$password', '$email')";
-		$query = "INSERT INTO `users` (`firstname`, `lastname`, `username`, `password`, `email`) VALUES ( '$fname', '$lname', '$username', '$password', '$email')";
+		$query = "INSERT INTO `users` (`firstname`, `lastname`, `username`, `password`, `email`) 
+		VALUES ( '$fname', '$lname', '$username', '$password', '$email')";
 		
 		$result = $crud->executeQuery($query);
 		// Send validate data to database

@@ -1,13 +1,12 @@
 <?php
- session_start();  
+include 'includes/header.php';
 include 'includes/classes/config/Crud.php';
 include 'includes/classes/config/Validation.php';
 include 'includes/form_handlers/add_user_handlers.php';
 ?>
-<?php include 'includes/header.php'; ?>
 <?php include 'includes/main_header.php'; ?>
 <?php include 'includes/left_sidebar.php'; ?>
-
+	
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
 	<!-- Content Header (Page header) -->

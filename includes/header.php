@@ -1,3 +1,7 @@
+<?php 
+$url = $_SERVER['DOCUMENT_ROOT']."/amit_erp1";
+include $url .'/includes/classes/config/Session.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>

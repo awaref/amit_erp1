@@ -1,6 +1,6 @@
 
 <?php
- session_start();  
+include 'includes/classes/config/Session.php';
 include 'includes/classes/config/Crud.php';
 include 'includes/classes/config/Validation.php';
 include 'includes/form_handlers/login_handlers.php';
