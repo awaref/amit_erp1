@@ -105,10 +105,31 @@ include 'includes/form_handlers/add_user_handlers.php';
 							value="<?= (isset($_POST['email']) && !empty($error_array)? ($_POST['email']):"" )?>">
 					    </div>
 						<?php  
-		    				if (in_array("Email already in use", $error_array)) {
+		    				if (in_array("Email fields cannot be empty", $error_array)) {
 		    			?>
 							<div class="alert alert-danger error-msg" role="alert">
-									Email already in use
+								Email fields cannot be empty
+							</div>
+						<?php
+							}
+							elseif(in_array("Email already in use", $error_array)){
+						?>
+							<div class="alert alert-danger error-msg" role="alert">
+								Email already in use
+							</div>
+						<?php
+							}
+							elseif(in_array("Email don't match", $error_array)){
+						?>
+							<div class="alert alert-danger error-msg" role="alert">
+								Email don't match
+							</div>
+						<?php
+							}
+							elseif(in_array("Invalid format!", $error_array)){
+						?>
+							<div class="alert alert-danger error-msg" role="alert">
+								Invalid format!
 							</div>
 						<?php
 							}

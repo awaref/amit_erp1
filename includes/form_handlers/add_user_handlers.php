@@ -79,22 +79,24 @@ if (isset($_POST['add_user'])) {
 	}
 
 	//------------ Check: email ------------
-	if ($email == $conf_email) {
-		// Check if email in valid format
-		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			//$email = filter_var($email, FILTER_VALIDATE_EMAIL);
-
-			$email = strtolower($email);
-			// Check if email is already exist
-			$email_check = $crud->getData("SELECT email FROM `users` WHERE email='$email'");
-			// Counts the numbers of rows return
-			if ($email_check !=  false) {
-				array_push($error_array, "Email already in use");
-			}
+	if (empty($email) || empty($conf_email)){
+		if ($email == $conf_email) {
+			// Check if email in valid format
+			if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				//$email = filter_var($email, FILTER_VALIDATE_EMAIL);
+				$email = strtolower($email);
+				// Check if email is already exist
+				$email_check = $crud->getData("SELECT email FROM `users` WHERE email='$email'");
+				// Counts the numbers of rows return
+				if ($email_check !=  false) {
+					array_push($error_array, "Email already in use");
+				}
+			} else
+				array_push($error_array, "Invalid format!");
 		} else
-			array_push($error_array, "Invalid format!");
+			array_push($error_array, "Email don't match");
 	} else
-		array_push($error_array, "Email don't match");
+		array_push($error_array, "Email fields cannot be empty");
 
 
 	// Check Phone number
