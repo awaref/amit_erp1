@@ -26,7 +26,7 @@ include 'includes/classes/config/Validation.php';
 					    		<div class="col-md-6">
 						    		<div class="form-group">
 									    <label for="user-id">User ID:</label>
-									    <input type="text" class="form-control" name="user_id" id="user-id" value="<?php echo $_SESSION['id'];?>">
+									    <input type="text" class="form-control" name="user_id" id="user-id" value="">
 									</div>
 						    	</div>
 						    	<div class="col-md-6">
