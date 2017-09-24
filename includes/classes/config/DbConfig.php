@@ -4,7 +4,7 @@ class DbConfig
     private $_host = 'localhost';
     private $_username = 'root';
     private $_password = '';
-    private $_database = 'amit_erp';
+    private $_database = 'amit';
 
     protected $connection;
 
