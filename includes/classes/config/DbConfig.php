@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: meraz
- * Date: 8/9/17
- * Time: 8:16 PM
- */
-
 class DbConfig
 {
     private $_host = 'localhost';
