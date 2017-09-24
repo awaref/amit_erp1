@@ -68,7 +68,6 @@ class Crud extends DbConfig
 		}
 		return $array;
 	}
-
 }
 
 ?>

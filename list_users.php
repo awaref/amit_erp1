@@ -69,7 +69,8 @@ include 'includes/classes/config/Validation.php'; ?>
 							                </tr>
 										<?php
 							            	}      	 
-							            ?>          		
+							            ?>
+							                      		
 				                		</tbody>
 				              		</table>
 			            		</div>
