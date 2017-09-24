@@ -12,7 +12,7 @@ class Crud extends DbConfig
 		}			
 		$rows = [];
 		while ($row = $result->fetch_assoc()) {
-			$rows = $row;
+			$rows[] = $row;
 		}
 		return $rows;
 	}
@@ -24,7 +24,7 @@ class Crud extends DbConfig
 		}			
 		$rows = [];
 		while ($row = $result->fetch_assoc()) {
-			$rows = $row;
+			$rows[] = $row;
 		}
 		return $rows;
 	}
@@ -56,17 +56,6 @@ class Crud extends DbConfig
 	}
 	public function get_connection(){
 		return $this->connection;
-	}
-
-
-	public function select($table_name) {
-		$array = array();
-		$query = "SELECT * FROM " . $table_name . "";
-		$result = mysqli_query($this->connect(), $query);
-		while ($row = mysqli_fetch_assoc($result)) {
-			$array[] = $row;
-		}
-		return $array;
 	}
 }
 

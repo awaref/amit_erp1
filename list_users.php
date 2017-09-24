@@ -31,7 +31,7 @@ include 'includes/classes/config/Validation.php'; ?>
 			            		<?php 
 
 			            			$crud = new Crud();
-			            			$result = $crud->select('users');
+			            			$result = $crud->getAllData('users');
 
 			            		 ?>
 
