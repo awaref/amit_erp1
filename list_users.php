@@ -1,69 +1,71 @@
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/main_header.php'; ?>
 <?php include 'includes/left_sidebar.php'; ?>
+<?php include 'includes/classes/config/Crud.php'; ?>
+<?php include 'includes/form_handlers/listUsers_handlers.php'; ?>
 
-	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
-		<!-- Content Header (Page header) -->
-		<section class="content-header">
-		  	<h1>
-		  		ERP
-		    	<small>List Users</small>
-		  	</h1>
-		</section>
-		<!-- Main content -->
-		<section class="content">
-			<!-- Main row -->
-			<div class="row">
-				<!-- Main content -->
-    			<section class="content">
-      				<div class="row">
-			        	<div class="col-xs-12">
-			          		<div class="box">
-			            		<div class="box-header">
-			              			<h3 class="box-title">Data Table With Full Features</h3>
-			            		</div>
-			            		<!-- /.box-header -->
-			            		<div class="box-body">
-				              		<table id="example1" class="table table-bordered table-striped">
-				                		<thead>
-				                			<tr>
-								                <th>ID</th>
-								                <th>Username</th>
-								                <th>Email</th>
-								                <th>Phone</th>
-								                <th>Gender</th>
-								                <th>Birthdate</th>
-								                <th>Image</th>
-								                <th>Login_at</th>
-								                <th>Created_at</th>
-				                			</tr>
-				                		</thead>
-				                		<tbody>
-				                			<tr>
-							                  	<td>1</td>
-							                  	<td>Mohab Hamdy</td>
-							                  	<td>test@test.com</td>
-							                  	<td>01112563225</td>
-							                  	<td>Male</td>
-							                  	<td>2017-07-12</td>
-							                  	<td></td>
-							                  	<td>01:05 PM</td>
-							                  	<td>01:05 PM</td>
-				                			</tr>
-				                		</tbody>
-				              		</table>
-			            		</div>
-			            		<!-- /.box-body -->
-			          		</div>
-			          		<!-- /.box -->
-						</div>
-						<!-- /.row (main row) -->
-					</div>
-				</section>
-			</div>
-		</section>
-		<!-- /.content -->
-	</div>
-	<!-- /.content-wrapper -->
+
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Simple Tables
+        <small>preview of simple tables</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Simple</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">USERS</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <table class="table table-condensed">
+                <tr>
+                  <th style="width: 10px">ID</th>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>Email </th>
+                  <th>Created At</th>
+                  <th>Actions</th>
+                </tr>
+                
+             <?php 
+
+		foreach ($result as $row) 
+		{ ?>
+			<tr>
+				<td><?php echo ($row["id"]); ?></td>
+				<td><?php echo ($row["firstname"]); ?></td>
+				<td><?php echo ($row["lastname"]); ?></td>
+				<td><?php echo ($row["email"]); ?></td>
+			</tr>
+		<?php 
+		} ?>
+
+	"</tbody>";
+"</table>";
+	
+
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
 <?php include 'includes/main_footer.php'; ?>
