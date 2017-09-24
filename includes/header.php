@@ -1,6 +1,6 @@
 <?php 
-$url = $_SERVER['DOCUMENT_ROOT']."/amit_erp1";
-include $url .'/includes/classes/config/Session.php';
+//$url = $_SERVER['DOCUMENT_ROOT']."/amit_erp1";
+include 'includes/classes/config/Session.php';
 ?>
 <!DOCTYPE html>
 <html>
