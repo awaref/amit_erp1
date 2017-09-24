@@ -139,11 +139,6 @@ include 'includes/form_handlers/add_user_handlers.php';
 						<?php
 							}
 						?>
-						
-						<div class="form-group">
-					        <!-- <label for="input-phone">Phone</label> -->
-					        <input type="text" name="phone" class="form-control" id="input-phone" placeholder="Phone">
-					    </div>
 					    <button type="submit" name="add_user" class="btn btn-primary">Add user</button>
 					</form>
 				</div>
