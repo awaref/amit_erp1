@@ -1,5 +1,4 @@
 <?php
-	ob_start();
     session_start();
     $current_page = basename($_SERVER['PHP_SELF']);
 	if (!empty($_SESSION['username'])){
