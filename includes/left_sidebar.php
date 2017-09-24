@@ -8,7 +8,7 @@
 	      		<img src="http://via.placeholder.com/60x60" class="img-circle" alt="User Image">
 	    	</div>
 	    	<div class="pull-left info">
-	      		<p>Alexander Pierce test</p>
+	      		<p><?php echo $_SESSION['fname'] . " " . $_SESSION['lname']; ?></p>
 	      		<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 	    	</div>
 	  </div>
