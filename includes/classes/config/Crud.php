@@ -16,6 +16,7 @@ class Crud extends DbConfig
 		}
 		return $rows;
 	}
+
 	public function getData($query) {
 		$result = $this->connect()->query($query);
 		if (!$result){
@@ -55,6 +56,17 @@ class Crud extends DbConfig
 	}
 	public function get_connection(){
 		return $this->connection;
+	}
+
+
+	public function select($table_name) {
+		$array = array();
+		$query = "SELECT * FROM " . $table_name . "";
+		$result = mysqli_query($this->connect(), $query);
+		while ($row = mysqli_fetch_assoc($result)) {
+			$array[] = $row;
+		}
+		return $array;
 	}
 
 }
