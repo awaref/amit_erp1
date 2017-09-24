@@ -18,6 +18,7 @@
 		{
 			if ($result != false) 
 	        {
+	        	$_SESSION['id'] = $result['id'];
 				$_SESSION['fname'] = $result['firstname'];
 				$_SESSION['lname'] = $result['lastname'];
 				$_SESSION['username'] = $result['username'];
