@@ -104,7 +104,12 @@ include 'includes/form_handlers/add_user_handlers.php';
 					        <input type="email" name="email" class="form-control" id="input-email" placeholder="Email"
 							value="<?= (isset($_POST['email']) && !empty($error_array)? ($_POST['email']):"" )?>">
 					    </div>
-						<?php  
+					    <div class="form-group">
+					        <!-- <label for="input-email">Email</label> -->
+					        <input type="email" name="conf-email" class="form-control" id="input-email" placeholder="Confirm Email"
+							value="<?= (isset($_POST['conf-email']) && !empty($error_array)? ($_POST['conf-email']):"" )?>">
+					    </div>
+					    <?php  
 		    				if (in_array("Email fields cannot be empty", $error_array)) {
 		    			?>
 							<div class="alert alert-danger error-msg" role="alert">
@@ -134,11 +139,7 @@ include 'includes/form_handlers/add_user_handlers.php';
 						<?php
 							}
 						?>
-					    <div class="form-group">
-					        <!-- <label for="input-email">Email</label> -->
-					        <input type="email" name="conf-email" class="form-control" id="input-email" placeholder="Confirm Email"
-							value="<?= (isset($_POST['conf-email']) && !empty($error_array)? ($_POST['conf-email']):"" )?>">
-					    </div>
+						
 						<div class="form-group">
 					        <!-- <label for="input-phone">Phone</label> -->
 					        <input type="text" name="phone" class="form-control" id="input-phone" placeholder="Phone">

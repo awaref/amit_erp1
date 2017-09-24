@@ -79,7 +79,7 @@ if (isset($_POST['add_user'])) {
 	}
 
 	//------------ Check: email ------------
-	if (empty($email) || empty($conf_email)){
+	if (!empty($email) || !empty($conf_email)) {
 		if ($email == $conf_email) {
 			// Check if email in valid format
 			if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
