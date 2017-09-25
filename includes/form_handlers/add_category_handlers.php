@@ -11,7 +11,6 @@ $error_array = array(); // Holds error messages
 
 // Form Handling
 if (isset($_POST['add_category'])) {
-
 	
 	// *******************************\_Form_Logic_/*******************************
 
@@ -19,7 +18,7 @@ if (isset($_POST['add_category'])) {
 	if (empty($cname)) {
 		array_push($error_array, "category name is required");
 	}
-  
+	
 	// Check if there's no error
 	if (empty($error_array)) {
 		

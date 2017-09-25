@@ -29,9 +29,15 @@ include 'includes/form_handlers/add_category_handlers.php';
 					    		<div class="col-md-12">
 					    			<div class="form-group">
 								        <!-- <label for="input">-->
-								        <input type="text" name="cname" class="form-control" id="category_name" placeholder="Name"   >
+								        <input type="text" name="cname" class="form-control" id="category_name" placeholder="Name" >
+									</div>
+									<div class="form-group">
+								        <!-- <label for="input">-->
 										<input type="text" name="cdetails" class="form-control" id="category_details" placeholder="Details">
-										<button type="submit" name="submit" class="btn btn-primary">Add</button>
+									</div>
+									<div class="form-group">
+								        <!-- <label for="input">-->
+										<button type="submit" name="add_category" class="btn btn-primary">Add</button>
 					    			</div>
 					    			<?php // var_dump($_POST); ?>
 					    		</div>

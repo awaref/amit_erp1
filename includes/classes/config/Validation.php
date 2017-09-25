@@ -5,15 +5,37 @@ class Validation
 	// This function the data container get by database is empty
 	public function checkEmpty($data, $fields)
 	{
-		$message = "";
+		$array = array();
 		foreach ($fields as $field) {
 			if (empty($data[$field]))
 			{
-				$message .= $field . " Cannot be empty <br>";
+				array_push($array, $field);
 			}
 		}
-		return $message;
+		return $array;
 	}
+
+	//// start -> added for ease of use
+	public function checkarray($fields,$array){
+		foreach ($fields as $field) {
+			if (in_array($field,$array))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public function numsValidation($data,$fields){
+		foreach ($fields as $field) {
+			if (!preg_match("/^[0-9]+$/", $data[$field]))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	//// end -> added for ease of use
 
 	// Check if age fields is number
 	public function numValidation($num)
@@ -24,6 +46,7 @@ class Validation
 		}
 		return false;
 	}
+	
 
 	public function emailValidation($email)
 	{

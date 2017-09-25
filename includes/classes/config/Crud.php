@@ -34,6 +34,7 @@ class Crud extends DbConfig
 		$result = $this->connect()->query($sqlQuery);
 		if (!$result) {
 			return false;
+			//to return error : $this->connection->error
 		} else
 			return true;
 	}

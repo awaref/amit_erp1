@@ -2,6 +2,7 @@
 
 $crud = new Crud();
 $validation = new Validation();
+
 // *********************************************************************
 // Register page variables declarations
 $name = ''; 			// Product Name
@@ -10,101 +11,75 @@ $desc = ''; 			// Product Description
 $price = ''; 		    // Price
 $cost = ''; 	        // Cost
 $quantity = ''; 		// Quantity
-$exp_date = ''; 		// Expire Date
+$day = '';				// Expire Date
+$month='';				//
+$year='';				//
 $error_array = array(); // Holds error messages
-
 // Form Handling
-if (isset($_POST['add_user'])) {
-
+if (isset($_POST['add_product'])) {
+        
 	// Product Name
 	$name = $validation->check_input($_POST['name']);	        // Remove HTML tags
 	$name = str_replace(' ', '', $name);	                    // Remove white-spaces
     $name = ucfirst(strtolower($name)); 	                    // UpperCase first letter
-    
+    // Category
+    $cat = $validation->check_input($_POST['category']);		// Remove HTML tags
 	// Product Description
-	$desc = $validation->check_input($_POST['desc']);	        // Remove HTML tags
-	$desc = str_replace(' ', '', $desc);	                    // Remove white-spaces
-	$desc = ucfirst(strtolower($desc)); 	                    // UpperCase first letter
-
-	// Price
-	$email = $validation->check_input($_POST['price']);         // Remove HTML tags
-	// Cost
-	$cost = $validation->check_input($_POST['cost']); 	        // Remove HTML tags
-    // Quantity
-	$quantity = $validation->check_input($_POST['quantity']); 	// Remove HTML tags
-	// Password, Confirm-Password
-	$exp_date = strip_tags($_POST['exp_date']); 			    // Remove HTML tags
-	//checkdate(12, 31, 2000);
+	$desc = $validation->check_input($_POST['desc']);	        // Remove HTML tags 
 
 	// *******************************\_Form_Logic_/*******************************
-
-	// Check FirstName and LastName
-	if (empty($fname) || empty($lname)) {
-		array_push($error_array, "First name and Last name are required");
-	} else {
-		//------------ Check: First_Name ------------
-		// Check first name char. length
-		if (strlen($fname) > 25 || strlen($fname) < 2) {
-			array_push($error_array, "First name must be between 2 and 25 characters");
+	//Check for empty fields
+	$error_array = $validation->checkEmpty($_POST, 
+	['name','category','price','cost','quantity','day','month','year']);
+	// check if name exists
+	$query = "SELECT * FROM `products` where `name` = '$name'";
+	if ($crud->getData($query) != false){
+		array_push($error_array, "Name exists");
+	}
+	
+	//------------ Check: Date ------------
+	if ($validation->numsValidation($_POST,['day','month','year'])!= false){
+		$day 	= (int)$_POST['day'];
+		$month 	= (int)$_POST['month'];
+		$year 	= (int)$_POST['year'];
+		if (checkdate($month,$day,$year)){
+			if ($year < 2017 || $year > 2050){
+				array_push($error_array, "Invalid Date");
+			}
+		}else{
+			array_push($error_array, "Invalid Date");
 		}
-
-		//------------ Check: Last_Name ------------
-		// Check last name char. length
-		if (strlen($lname) > 25 || strlen($lname) < 2){
-			array_push($error_array, "Last name must be between 2 and 25 characters");
-		}
+	}else{
+		array_push($error_array, "Invalid Date");
 	}
 
-	//------------ Check: Password ------------
-	// Check if password not match
-	if (empty($password) || empty($conf_password)) {
-		array_push($error_array, "Password fields cannot be empty");
-	} else {
-		if ($password != $conf_password) {
-			array_push($error_array, "Your password don't match, please check it again");
-		}
-		// Check password char length
-		if (strlen($password) > 30 || strlen($password) < 5) {
-			array_push($error_array, "Your password must be between 5 and 30 characters");
-		} 
-	}
+	$price = filter_var($_POST['price'],FILTER_VALIDATE_FLOAT);
+	$quantity = filter_var($_POST['quantity'],FILTER_VALIDATE_FLOAT);
+	$cost = filter_var($_POST['cost'],FILTER_VALIDATE_FLOAT);
+	if ($price == false) array_push($error_array, "Invalid Price");
+	if ($quantity == false) array_push($error_array, "Invalid Quantity"); 
+	if ($cost == false) array_push($error_array, "Invalid Cost");  
+	
+	 
+	
+	
 
-	//------------ Check: email ------------
-	if (!empty($email) || !empty($conf_email)) {
-		if ($email == $conf_email) {
-			// Check if email in valid format
-			if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-				//$email = filter_var($email, FILTER_VALIDATE_EMAIL);
-				$email = strtolower($email);
-				// Check if email is already exist
-				$email_check = $crud->getData("SELECT email FROM `users` WHERE email='$email'");
-				// Counts the numbers of rows return
-				if ($email_check !=  false) {
-					array_push($error_array, "Email already in use");
-				}
-			} else
-				array_push($error_array, "Invalid format!");
-		} else
-			array_push($error_array, "Email don't match");
-	} else
-		array_push($error_array, "Email fields cannot be empty");
-
-
-	// Check Phone number
+	
 
 	// Check if there's no error
 	if (empty($error_array)) {
-		$password = md5($password); // Encrypt password before sending to database
-
-		//Generate username by concatenating FirstName amd LastName
-		$username = strtolower($fname . "_" . $lname);
-
+	
 		// Send validate data to database
-		$query = "INSERT INTO `users` (`firstname`, `lastname`, `username`, `password`, `email`) 
-		VALUES ( '$fname', '$lname', '$username', '$password', '$email')";
-		
+		$query = "INSERT INTO `products` VALUES ( NULL,'$cat', '$name', '$desc', '$price', '$cost','$quantity','$year-$month-$day',NULL,NULL)";
 		$result = $crud->executeQuery($query);
-		$success = 'New user: ' . $fname . " " . $lname . ' has been added successfully';
+		if ($result != false){
+			$_POST['success'] = '
+			<div class="alert alert-success success-msg" role="success">
+				Product : '.$name.' was added Successfully
+			</div>
+			';
+		}
+		
 	}
 
 }
