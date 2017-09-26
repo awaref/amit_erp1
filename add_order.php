@@ -75,7 +75,7 @@ include 'includes/form_handlers/add_order_handlers.php';
 					    		<div class="col-md-12">
 						    		<div class="form-group">
 									    <label for="customer-id">Products:</label>
-									    <input type="text" name="product" class="form-control">
+									    <input type="text" name="product" class="form-control" required>
 			  						</div>
 			  						<?php  
 					  					if (in_array('This field cannot be empty', $msgs_array)) {
@@ -84,11 +84,17 @@ include 'includes/form_handlers/add_order_handlers.php';
 										This field cannot be empty
 									</div>
 									<?php
-										} elseif (in_array('Product field must be between 3 and 50 characters', $msgs_array)) {
+										} elseif (in_array('Product field must be between 2 and 50 characters', $msgs_array)) {
 									?>
 
 									<div class="alert alert-danger error-msg" role="alert">
-										Product field must be between 3 and 50 characters
+										Product field must be between 2 and 50 characters
+									</div>
+									<?php
+										} elseif (in_array("Letters and white spaces are allowed", $msgs_array)) {
+									?>
+									<div class="alert alert-danger error-msg" role="alert">
+										Letters and white spaces are allowed
 									</div>
 									<?php
 										}
@@ -100,7 +106,7 @@ include 'includes/form_handlers/add_order_handlers.php';
 
 			  			<div class="form-group">
 					    	<label for="total-amount">Total Amount:</label>
-					    	<input type="text" class="form-control" name="total_amount" id="total-amount">
+					    	<input type="text" class="form-control" name="total_amount" id="total-amount" required>
 					  	</div>
 						  	<?php  
 						  		if (in_array("This field cannot be empty", $msgs_array)) {
@@ -122,7 +128,7 @@ include 'includes/form_handlers/add_order_handlers.php';
 			  			
 					  	<div class="form-group">
 						    <label for="shipping-fees">ٍShipping Fees:</label>
-						    <input type="text" class="form-control" name="shipping_fees" id="shipping-fees">
+						    <input type="text" class="form-control" name="shipping_fees" id="shipping-fees" required>
 					  	</div>
 					  	<?php  
 					  		if (in_array("This field cannot be empty", $msgs_array)) {

@@ -34,8 +34,8 @@ if (isset($_POST['add_order'])) {
 	if (empty($product)) {
 		array_push($msgs_array, 'This field cannot be empty');
 	} else {
-		if (!preg_match("/^[a-zA-Z ]*$/", $product)) {
-			echo "Error";
+		if (!$validation->checkString($product)) {
+			array_push($msgs_array, "Letters and white spaces are allowed");
 		}
 		if (strlen($product) > 50 || strlen($product) < 2) {
 			array_push($msgs_array, 'Product field must be between 2 and 50 characters');

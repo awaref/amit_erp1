@@ -18,7 +18,6 @@
 	      <!-- User Account: style can be found in dropdown.less -->
 	      <li class="dropdown user user-menu">
 	        <a href="#">
-	          <img src="http://via.placeholder.com/60x60" class="user-image" alt="User Image">
 	          <span class="hidden-xs"><?php echo $_SESSION['fname'] . " " . $_SESSION['lname']; ?></span>
 	        </a>
 	      </li>
