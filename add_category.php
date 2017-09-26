@@ -36,10 +36,10 @@ include 'includes/form_handlers/add_category_handlers.php';
 					    			<?php
 					    				}
 					    			?>
-					    			
+
 					    			<div class="form-group">
 								        <!-- <label for="input">-->
-								        <input type="text" name="cname" class="form-control" id="category_name" placeholder="Name" >
+								        <input type="text" name="cname" class="form-control" id="category_name" placeholder="Name" required>
 									</div>
 									<?php  
 										if (in_array("category name is required", $msg_array)) {
@@ -54,7 +54,7 @@ include 'includes/form_handlers/add_category_handlers.php';
 
 									<div class="form-group">
 								        <!-- <label for="input">-->
-										<input type="text" name="cdetails" class="form-control" id="category_details" placeholder="Details">
+										<input type="text" name="cdetails" class="form-control" id="category_details" placeholder="Details" required>
 									</div>
 									<?php  
 										if (in_array("category details is required", $msg_array)) {	
