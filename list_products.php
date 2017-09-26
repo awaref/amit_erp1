@@ -31,8 +31,8 @@ include 'includes/classes/config/Validation.php'; ?>
 			            		<?php 
 
 			            			$crud = new Crud();
-			            			$result = $crud->getAllData('products');
-									$categories = $crud->getAllData_assocByID('category');
+			            			$result = $crud->getData('SELECT products.*,category.name as 
+									cat_name from products join category where category_id = category.id');
 			            		 ?>
 
 			            		<!-- /.box-header -->
@@ -56,8 +56,7 @@ include 'includes/classes/config/Validation.php'; ?>
 												$name = $product['name'];
 												$desc = $product['description'];
 												$quantity = $product['quantity'];
-												$category_id = $product['category_id'];
-												$category_name = $categories[$category_id]['name'];
+												$category_name = $product['cat_name'];
 					                  			$price = $product['price'];
 					                  			$cost = $product['cost'];
 					                  			$expire_date = $product['expire_date'];

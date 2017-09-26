@@ -16,18 +16,7 @@ class Crud extends DbConfig
 		}
 		return $rows;
 	}
-	public function getAllData_assocByID($table) {
-		$query = "SELECT * FROM `$table`";
-		$result = $this->connect()->query($query);
-		if (!$result){
-			return false;
-		}			
-		$rows = [];
-		while ($row = $result->fetch_assoc()) {
-			$rows[$row['id']] = $row;
-		}
-		return $rows;
-	}
+	
 	public function getData($query) {
 		$result = $this->connect()->query($query);
 		if (!$result){

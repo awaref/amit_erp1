@@ -46,7 +46,7 @@ include 'includes/handlers/functions.php';
 						<div class="form-group">
 							<div class="row">
 					  	 	 	<div class="col-md-8 col-sm-12">
-									<select id="category" class="form-control select2" name="category" required value="<?php check_str('category') ?>">
+									<select id="category" class="form-control select2" name="category" required">
 										<?php include "includes/handlers/category_reload.php";?>
                 					</select>
 								</div>
