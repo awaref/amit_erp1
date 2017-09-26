@@ -16,26 +16,18 @@ $msgs_array = [];
 if (isset($_POST['add_order'])) {
 
 	$customer_id = $_POST['customer_id'];
-	//$customer_id = $validation->numValidation($_POST['customer_id']);
-	$product = $_POST['product'];
-	//$product = $validation->check_input($_POST['product']);
-	$total_amount = $_POST['total_amount'];
-	//$total_amount = $validation->numValidation($_POST['total_amount']);
-	$shipping_fees = $_POST['shipping_fees'];
-	//$shipping_fees = $validation->numValidation($_POST['shipping_fees']);
+	$product = $validation->check_input($_POST['product']);
+	$product = ucfirst($product);
+	$total_amount = $validation->numValidation($_POST['total_amount']);
+	$shipping_fees = $validation->numValidation($_POST['shipping_fees']);
 	$notes = $_POST['notes'];
-	// $notes = strip_tags($notes);
-	// $notes = htmlspecialchars($notes);
+	$notes = strip_tags($notes);
+	$notes = htmlspecialchars($notes);
 
 	//*********** Form_Handling **************//
 
-	// CustomerID
-	if (empty($customer_id)) {
-		array_push($msgs_array, 'This field cannot be empty');
-	} else {
-		if (!$validation->numValidation($customer_id)) {
-			array_push($msgs_array, 'Customer id must be number');
-		}
+	if ($customer_id == 'select' || $customer_id == 'Select') {
+		array_push($msgs_array, "Please select customer id");
 	}
 
 	// Product
@@ -81,12 +73,8 @@ if (isset($_POST['add_order'])) {
 		$query = "INSERT INTO `orders` VALUES (NULL, '$user_id', '$customer_id', '$product', '$total_amount', '$shipping_fees', '$notes', '')";
 		$result = $crud->executeQuery($query);
 
-		if (!$result)
-			echo "<pre style='color:#000;'>";
-			print_r($query);
-			echo "</pre>";
-			die("Failed to execute query");
-		
+		if ($result)
+			array_push($msgs_array, "Order added successfully");
 	}
 }
 

@@ -19,7 +19,9 @@ include 'includes/handlers/functions.php';
 		  </h1>
 		  
 	</section>
-<!-- Main row -->
+	<!-- Main content -->
+	<section class="content">
+		<!-- Main row -->
 		<div class="row">
 			<div class="add-product-form">
 				<div class="col-md-6 col-md-offset-3">

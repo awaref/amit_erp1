@@ -6,7 +6,6 @@ include 'includes/form_handlers/add_order_handlers.php';
 ?>
 <?php include 'includes/main_header.php'; ?>
 <?php include 'includes/left_sidebar.php'; ?>
-
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -41,28 +40,33 @@ include 'includes/form_handlers/add_order_handlers.php';
 									</div>
 						    	</div>
 						    	<div class="col-md-6">
-						    		<div class="form-group">
-									    <label for="customer-id">Customer ID:</label>
-									    <input type="text" name="customer_id" class="form-control">
-						  			</div>
-						  			<?php  
-						  				if (in_array('This field cannot be empty', $msgs_array)) {
-						  			?>
+						    		
+						  			<div class="form-group">
+								    	<label for="total-amount">cust id:</label>
+								    	<select name="customer_id" id="" class="form-control">
+								    		<option value="select">Select</option>
+								    		<?php  
+								    			$result = $crud->getAllData('customers');
+								    			foreach ($result as $customer){
+								    				$customer_id = $customer['id'];
+								    		?>
+												<option value="<?= $customer_id; ?>"><?= $customer_id; ?></option>
+								    		<?php
+								    			}
 
-									<div class="alert alert-danger error-msg" role="alert">
-										This field cannot be empty
-									</div>
-						  			<?php
-						  				} elseif (in_array('Customer id must be number', $msgs_array)) {
-						  			?>
-
-									<div class="alert alert-danger error-msg" role="alert">
-										Customer id must be number
-									</div>
-						  			<?php
-						  				}
-						  			?>
-
+								    		?>
+								    		
+								    	</select>
+								    	<?php  
+								    		if (in_array("Please select customer id", $msgs_array)) {
+								    	?>
+										<div class="alert alert-danger error-msg" role="alert">
+											Please select customer id
+										</div>
+								    	<?php
+								    		}
+								    	?>
+					  				</div>
 						    	</div>
 					    	</div>
 					    </div>
@@ -95,9 +99,9 @@ include 'includes/form_handlers/add_order_handlers.php';
 					    </div>
 
 			  			<div class="form-group">
-						    	<label for="total-amount">Total Amount:</label>
-						    	<input type="text" class="form-control" name="total_amount" id="total-amount">
-						  	</div>
+					    	<label for="total-amount">Total Amount:</label>
+					    	<input type="text" class="form-control" name="total_amount" id="total-amount">
+					  	</div>
 						  	<?php  
 						  		if (in_array("This field cannot be empty", $msgs_array)) {
 						  	?>
