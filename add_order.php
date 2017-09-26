@@ -2,7 +2,7 @@
 include 'includes/header.php';
 include 'includes/classes/config/Crud.php';
 include 'includes/classes/config/Validation.php';
-
+include 'includes/form_handlers/add_order_handlers.php';
 ?>
 <?php include 'includes/main_header.php'; ?>
 <?php include 'includes/left_sidebar.php'; ?>
@@ -16,44 +16,140 @@ include 'includes/classes/config/Validation.php';
 	    	<small>Add User</small>
 	  	</h1>
 	</section>
-<!-- Main row -->
+	<!-- Main content -->
+	<section class="content">
+	<!-- Main row -->
 		<div class="row">
 			<div class="add-order-form">
 				<div class="col-md-6 col-md-offset-3">
-					<form action="add_user.php" method="POST">
+				<?php  
+					if (in_array("Order added successfully", $msgs_array)) {
+				?>
+					<div class="alert alert-success error-msg" role="alert">
+						Order added successfully
+					</div>
+				<?php
+					}
+				?>
+					<form action="add_order.php" method="POST">
 					    <div class="get_user_customer_id">
 					    	<div class="row">
 					    		<div class="col-md-6">
 						    		<div class="form-group">
 									    <label for="user-id">User ID:</label>
-									    <input type="text" class="form-control" name="user_id" id="user-id" value="<?php echo $_SESSION['id']; ?>">
+									    <input type="text" class="form-control" name="user_id" id="user-id" value="<?php echo $user_id; ?>" readonly>
 									</div>
 						    	</div>
 						    	<div class="col-md-6">
 						    		<div class="form-group">
 									    <label for="customer-id">Customer ID:</label>
-									    <input type="text" class="form-control" name="customer_id" id="customer-id">
+									    <input type="text" name="customer_id" class="form-control">
 						  			</div>
+						  			<?php  
+						  				if (in_array('This field cannot be empty', $msgs_array)) {
+						  			?>
+
+									<div class="alert alert-danger error-msg" role="alert">
+										This field cannot be empty
+									</div>
+						  			<?php
+						  				} elseif (in_array('Customer id must be number', $msgs_array)) {
+						  			?>
+
+									<div class="alert alert-danger error-msg" role="alert">
+										Customer id must be number
+									</div>
+						  			<?php
+						  				}
+						  			?>
+
 						    	</div>
 					    	</div>
 					    </div>
-						<div class="form-group">
-						    <label for="total-amount">Total Amount:</label>
-						    <input type="password" class="form-control" name="total_amount" id="total-amount">
-					  	</div>
+					    <div class="get_user_customer_id">
+					    	<div class="row">
+					    		<div class="col-md-12">
+						    		<div class="form-group">
+									    <label for="customer-id">Products:</label>
+									    <input type="text" name="product" class="form-control">
+			  						</div>
+			  						<?php  
+					  					if (in_array('This field cannot be empty', $msgs_array)) {
+					  				?>
+									<div class="alert alert-danger error-msg" role="alert">
+										This field cannot be empty
+									</div>
+									<?php
+										} elseif (in_array('Product field must be between 3 and 50 characters', $msgs_array)) {
+									?>
+
+									<div class="alert alert-danger error-msg" role="alert">
+										Product field must be between 3 and 50 characters
+									</div>
+									<?php
+										}
+									?>
+
+						    	</div>
+					    	</div>
+					    </div>
+
+			  			<div class="form-group">
+						    	<label for="total-amount">Total Amount:</label>
+						    	<input type="text" class="form-control" name="total_amount" id="total-amount">
+						  	</div>
+						  	<?php  
+						  		if (in_array("This field cannot be empty", $msgs_array)) {
+						  	?>
+
+						  	<div class="alert alert-danger error-msg" role="alert">
+								This field cannot be empty
+							</div>
+							<?php
+								} elseif (in_array("Total amount must be number", $msgs_array)) {
+							?>
+
+							<div class="alert alert-danger error-msg" role="alert">
+								Total amount must be number
+							</div>
+							<?php
+								}
+						  	?>
+			  			
 					  	<div class="form-group">
 						    <label for="shipping-fees">ٍShipping Fees:</label>
-						    <input type="password" class="form-control" name="shipping_fees" id="shipping-fees">
+						    <input type="text" class="form-control" name="shipping_fees" id="shipping-fees">
 					  	</div>
+					  	<?php  
+					  		if (in_array("This field cannot be empty", $msgs_array)) {
+					  	?>
+					  	<div class="alert alert-danger error-msg" role="alert">
+							This field cannot be empty
+		    			</div>
+						<?php
+							} elseif (in_array("Shipping fees must be number", $msgs_array)) {
+						?>
+						<div class="alert alert-danger error-msg" role="alert">
+							Shipping fees must be number
+		    			</div>
+						<?php
+							}
+					  	?>
+
 					  	<div class="form-group">
-						    <label for="status">Status:</label>
-						    <input type="password" class="form-control" name="status" id="status">
-					  	</div>
-					  	<div class="form-group">
-						  	<label for="notes">Notes:</label>
+						  	<label for="notes">Notes (Optional):</label>
 					  		<textarea class="form-control" rows="5" name="notes" id="notes"></textarea>
 						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
+						<?php  
+							if (in_array("Don't exceeds 100 characters", $msgs_array)) {
+						?>
+						<div class="alert alert-warning error-msg" role="alert">
+							Don't exceeds 100 characters
+		    			</div>
+						<?php
+							}
+						?>
+						<button type="submit" name="add_order" class="btn btn-primary">Add Order</button>
 					</form>
 				</div>
 			</div>

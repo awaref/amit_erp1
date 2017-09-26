@@ -59,7 +59,7 @@
 		  		</a>
 		  		<ul class="treeview-menu">
 		  			<li><a href="add_order.php"><i class="fa fa-circle-o"></i> Add Orders</a></li>
-		    		<li><a href="index.html"><i class="fa fa-circle-o"></i> List Orders</a></li>
+		    		<li><a href="list_orders.php"><i class="fa fa-circle-o"></i> List Orders</a></li>
 		  		</ul>
 			</li>
 		</ul>

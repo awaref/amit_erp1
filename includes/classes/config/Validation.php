@@ -28,7 +28,7 @@ class Validation
 	
 	public function numsValidation($data,$fields){
 		foreach ($fields as $field) {
-			if (!preg_match("/^[0-9]+$/", $data[$field]))
+			if (!preg_match("/^[0-9]*$/", $data[$field]))
 			{
 				return false;
 			}
@@ -40,9 +40,9 @@ class Validation
 	// Check if age fields is number
 	public function numValidation($num)
 	{
-		if (preg_match("/^[0-9]+$/", $num))
+		if (preg_match("/^[0-9]*$/", $num))
 		{
-			return true;
+			return $num;
 		}
 		return false;
 	}
