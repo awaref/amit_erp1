@@ -42,7 +42,7 @@ include 'includes/form_handlers/add_order_handlers.php';
 						    	<div class="col-md-6">
 						    		
 						  			<div class="form-group">
-								    	<label for="total-amount">cust id:</label>
+								    	<label for="total-amount">Customer id:</label>
 								    	<select name="customer_id" id="" class="form-control">
 								    		<option value="select">Select</option>
 								    		<?php  
