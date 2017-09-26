@@ -27,14 +27,44 @@ include 'includes/form_handlers/add_category_handlers.php';
 					    <div class="username">
 					    	<div class="row">
 					    		<div class="col-md-12">
+					    			<?php  
+					    				if (in_array("New category has been added", $msg_array)) {
+					    			?>
+									<div class="alert alert-success error-msg" role="alert">
+										New category has been added
+									</div>
+					    			<?php
+					    				}
+					    			?>
+					    			
 					    			<div class="form-group">
 								        <!-- <label for="input">-->
 								        <input type="text" name="cname" class="form-control" id="category_name" placeholder="Name" >
 									</div>
+									<?php  
+										if (in_array("category name is required", $msg_array)) {
+									?>
+									<div class="alert alert-danger error-msg" role="alert">
+											category name is required
+									</div>
+
+									<?php
+										}
+									?>
+
 									<div class="form-group">
 								        <!-- <label for="input">-->
 										<input type="text" name="cdetails" class="form-control" id="category_details" placeholder="Details">
 									</div>
+									<?php  
+										if (in_array("category details is required", $msg_array)) {	
+									?>
+									<div class="alert alert-danger error-msg" role="alert">
+										category details is required
+									</div>
+									<?php
+										}
+									?>
 									<div class="form-group">
 								        <!-- <label for="input">-->
 										<button type="submit" name="add_category" class="btn btn-primary">Add</button>

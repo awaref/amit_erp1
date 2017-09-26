@@ -7,35 +7,36 @@ $validation = new Validation();
 $cname = '';  			// category_name
 $cdetails = ''; 			// category_details
 
-$error_array = array(); // Holds error messages
+$msg_array = array(); // Holds error messages
 
 // Form Handling
 if (isset($_POST['add_category'])) {
+
+	$cname = $_POST['cname'];
+	$cdetails = $_POST['cdetails'];
 	
 	// *******************************\_Form_Logic_/*******************************
 
 	
 	if (empty($cname)) {
-		array_push($error_array, "category name is required");
+		array_push($msg_array, "category name is required");
+	}
+
+	if (empty($cdetails)) {
+		array_push($msg_array, "category details is required");
 	}
 	
 	// Check if there's no error
-	if (empty($error_array)) {
-		
-
+	if (empty($msg_array)) {
 		// Send validate data to database
-		$query = "INSERT INTO `category` (`name`, `description`) 
-		VALUES ( '$cname', '$cdetails')";
+		$query = "INSERT INTO `category` VALUES (NULL, '$cname', '$cdetails')";
 		
 		$result = $crud->executeQuery($query);
-		
-				  
-	}
-	else {
 
-		echo "error occur";
+		if ($result) {
+			array_push($msg_array, "New category has been added");
+		}	  
 	}
-
 }
 
 
