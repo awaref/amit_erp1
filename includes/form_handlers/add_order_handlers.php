@@ -16,10 +16,10 @@ $msgs_array = [];
 if (isset($_POST['add_order'])) {
 
 	$customer_id = $_POST['customer_id'];
-	$product = $validation->check_input($_POST['product']);
+	$product = $_POST['product'];
 	$product = ucfirst($product);
-	$total_amount = $validation->numValidation($_POST['total_amount']);
-	$shipping_fees = $validation->numValidation($_POST['shipping_fees']);
+	$total_amount = $_POST['total_amount'];
+	$shipping_fees = $_POST['shipping_fees'];
 	$notes = $_POST['notes'];
 	$notes = strip_tags($notes);
 	$notes = htmlspecialchars($notes);
@@ -65,7 +65,6 @@ if (isset($_POST['add_order'])) {
 	if (strlen($notes) > 100)
 		array_push($msgs_array, 'Don\'t exceeds 100 characters');
 
-
 	// Check if there's no error
 	if (empty($msgs_array)) {
 
@@ -73,8 +72,9 @@ if (isset($_POST['add_order'])) {
 		$query = "INSERT INTO `orders` VALUES (NULL, '$user_id', '$customer_id', '$product', '$total_amount', '$shipping_fees', '$notes', '')";
 		$result = $crud->executeQuery($query);
 
-		if ($result)
+		if ($result){
 			array_push($msgs_array, "Order added successfully");
+		}
 	}
 }
 

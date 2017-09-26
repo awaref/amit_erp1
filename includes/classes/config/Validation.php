@@ -40,7 +40,7 @@ class Validation
 	// Check if age fields is number
 	public function numValidation($num)
 	{
-		if (!preg_match("/^[0-9]*$/", $num))
+		if (preg_match("/^[0-9]*$/", $num))
 		{
 			return $num;
 		}
