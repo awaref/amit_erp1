@@ -36,7 +36,8 @@ include 'includes/classes/config/Crud.php';
 								                <th>User_ID</th>
 								                <th>Customer_ID</th>
 								                <th>Product</th>
-								                <th>Total_Amount</th>
+												<th>Quantity</th>
+								                <th>Total_Price</th>
 								                <th>Shipping_Fees</th>
 								                <th>Notes</th>
 								                <th>Created_At</th>
@@ -51,7 +52,8 @@ include 'includes/classes/config/Crud.php';
 					                  			$user_id = $order['user_id'];
 					                  			$customer_id = $order['customer_id'];
 					                  			$product = $order['product'];
-					                  			$total_amount = $order['total_amount'];
+												$quantity = $order['quantity'];  
+												$total_price = $order['total_price'];
 					                  			$shipping_fees = $order['shipping_fees'];
 					                  			$notes = $order['notes'];
 					                  			$created_at = $order['created_at'];
@@ -62,7 +64,8 @@ include 'includes/classes/config/Crud.php';
 							                  	<td><?=  $user_id; ?></td>
 							                  	<td><?=  $customer_id; ?></td>
 							                  	<td><?=  $product; ?></td>
-							                  	<td><?=  $total_amount; ?></td>
+												<td><?=  $quantity; ?></td>
+							                  	<td><?=  $total_price; ?></td>
 							                  	<td><?=  $shipping_fees; ?></td>
 							                  	<td><?=  $notes; ?></td>
 							                  	<td><?=  $created_at; ?></td>

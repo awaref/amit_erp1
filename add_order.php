@@ -3,6 +3,7 @@ include 'includes/header.php';
 include 'includes/classes/config/Crud.php';
 include 'includes/classes/config/Validation.php';
 include 'includes/form_handlers/add_order_handlers.php';
+include 'includes/handlers/functions.php';
 ?>
 <?php include 'includes/main_header.php'; ?>
 <?php include 'includes/left_sidebar.php'; ?>
@@ -12,7 +13,7 @@ include 'includes/form_handlers/add_order_handlers.php';
 	<section class="content-header">
 	  	<h1>
 	  		ERP
-	    	<small>Add User</small>
+	    	<small>Add Order</small>
 	  	</h1>
 	</section>
 	<!-- Main content -->
@@ -30,7 +31,7 @@ include 'includes/form_handlers/add_order_handlers.php';
 				<?php
 					}
 				?>
-					<form action="add_order.php" method="POST">
+					<form action="add_order.php" method="POST" novalidate>
 					    <div class="get_user_customer_id">
 					    	<div class="row">
 					    		<div class="col-md-6">
@@ -42,15 +43,16 @@ include 'includes/form_handlers/add_order_handlers.php';
 						    	<div class="col-md-6">
 						    		
 						  			<div class="form-group">
-								    	<label for="total-amount">Customer id:</label>
+								    	<label for="total-amount">Customer:</label>
 								    	<select name="customer_id" id="" class="form-control">
 								    		<option value="select">Select</option>
 								    		<?php  
 								    			$result = $crud->getAllData('customers');
 								    			foreach ($result as $customer){
-								    				$customer_id = $customer['id'];
+													$customer_id = $customer['id'];
+													$customer_name = $customer['firstname']." ".$customer['lastname'];
 								    		?>
-												<option value="<?= $customer_id; ?>"><?= $customer_id; ?></option>
+												<option value="<?= $customer_id; ?>"><?= $customer_id."-".$customer_name; ?></option>
 								    		<?php
 								    			}
 
@@ -74,14 +76,14 @@ include 'includes/form_handlers/add_order_handlers.php';
 					    	<div class="row">
 					    		<div class="col-md-12">
 						    		<div class="form-group">
-									    <label for="customer-id">Products:</label>
-									    <input type="text" name="product" class="form-control" required>
+									    <label for="customer-id">Product:</label>
+									    <input type="text" name="product" id="product" onkeyup="typing_product(this.value)" class="form-control" value="<?php check_str('product') ?>" required>
 			  						</div>
 			  						<?php  
-					  					if (in_array('This field cannot be empty', $msgs_array)) {
+					  					if (in_array('Product cannot be empty', $msgs_array)) {
 					  				?>
 									<div class="alert alert-danger error-msg" role="alert">
-										This field cannot be empty
+										Product cannot be empty
 									</div>
 									<?php
 										} elseif (in_array('Product field must be between 2 and 50 characters', $msgs_array)) {
@@ -91,10 +93,16 @@ include 'includes/form_handlers/add_order_handlers.php';
 										Product field must be between 2 and 50 characters
 									</div>
 									<?php
-										} elseif (in_array("Letters and white spaces are allowed", $msgs_array)) {
+										} elseif (in_array("product: Letters and white spaces are allowed", $msgs_array)) {
 									?>
 									<div class="alert alert-danger error-msg" role="alert">
-										Letters and white spaces are allowed
+										Only Letters and white spaces are allowed
+									</div>
+									<?php
+										} elseif (in_array("Product doesnot exist", $msgs_array)) {
+									?>
+									<div class="alert alert-danger error-msg" role="alert">
+										Product doesn't exist
 									</div>
 									<?php
 										}
@@ -105,22 +113,22 @@ include 'includes/form_handlers/add_order_handlers.php';
 					    </div>
 
 			  			<div class="form-group">
-					    	<label for="total-amount">Total Amount:</label>
-					    	<input type="text" class="form-control" name="total_amount" id="total-amount" required>
+					    	<label for="quantity">Quantity:</label>
+					    	<input type="number" class="form-control" name="quantity" id="quantity"  value="<?php check_str('quantity') ?>" required>
 					  	</div>
 						  	<?php  
-						  		if (in_array("This field cannot be empty", $msgs_array)) {
+						  		if (in_array("Quantity cannot be empty", $msgs_array)) {
 						  	?>
 
 						  	<div class="alert alert-danger error-msg" role="alert">
-								This field cannot be empty
+								Quantity cannot be empty
 							</div>
 							<?php
-								} elseif (in_array("Total amount must be number", $msgs_array)) {
+								} elseif (in_array("Quantity must be number", $msgs_array)) {
 							?>
 
 							<div class="alert alert-danger error-msg" role="alert">
-								Total amount must be number
+								Quantity must be number
 							</div>
 							<?php
 								}
@@ -128,13 +136,13 @@ include 'includes/form_handlers/add_order_handlers.php';
 			  			
 					  	<div class="form-group">
 						    <label for="shipping-fees">ٍShipping Fees:</label>
-						    <input type="text" class="form-control" name="shipping_fees" id="shipping-fees" required>
+						    <input type="text" class="form-control" name="shipping_fees" id="shipping-fees"  value="<?php check_str('shipping_fees') ?>" required>
 					  	</div>
 					  	<?php  
-					  		if (in_array("This field cannot be empty", $msgs_array)) {
+					  		if (in_array("Shipping fees cannot be empty", $msgs_array)) {
 					  	?>
 					  	<div class="alert alert-danger error-msg" role="alert">
-							This field cannot be empty
+							Shipping fees cannot be empty
 		    			</div>
 						<?php
 							} elseif (in_array("Shipping fees must be number", $msgs_array)) {
@@ -148,17 +156,18 @@ include 'includes/form_handlers/add_order_handlers.php';
 
 					  	<div class="form-group">
 						  	<label for="notes">Notes (Optional):</label>
-					  		<textarea class="form-control" rows="5" name="notes" id="notes"></textarea>
+					  		<textarea class="form-control" rows="5" name="notes" id="notes"  value="<?php check_str('notes') ?>"></textarea>
 						</div>
 						<?php  
-							if (in_array("Don't exceeds 100 characters", $msgs_array)) {
+							if (in_array("Don't exceed 100 characters", $msgs_array)) {
 						?>
 						<div class="alert alert-warning error-msg" role="alert">
-							Don't exceeds 100 characters
+							Don't exceed 100 characters
 		    			</div>
 						<?php
 							}
 						?>
+						<input type = "hidden" id="pr_confirm" name="pr_confirm">
 						<button type="submit" name="add_order" class="btn btn-primary">Add Order</button>
 					</form>
 				</div>

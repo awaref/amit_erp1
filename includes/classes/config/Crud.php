@@ -39,6 +39,20 @@ class Crud extends DbConfig
 			return true;
 	}
 
+	public function checkData($sqlQuery) {
+		$result = $this->connect()->query($sqlQuery);
+		if ($result == false) {
+			return false;
+			//to return error : $this->connection->error
+		} else{
+			if (mysqli_num_rows($result) == 0){
+				return false;
+			}
+			return true;
+		}
+			
+	}
+
 	// Delete data
 	public function deleteData($table, $id) {
 		$query = "DELETE FROM " . $table . " WHERE `id` = " . $id . "";
