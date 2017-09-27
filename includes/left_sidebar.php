@@ -20,7 +20,19 @@
 			</li>
 			<li class="treeview">
 		  		<a href="#">
-		    		<i class="fa fa-shopping-basket"></i> <span>Products</span>
+		    		<i class="fa fa-user-circle-o"></i> <span>Customers</span>
+			    	<span class="pull-right-container">
+			      	<i class="fa fa-angle-left pull-right"></i>
+			    	</span>
+		  		</a>
+		  		<ul class="treeview-menu">
+		  			<li><a href="add_customer.php"><i class="fa fa-circle-o"></i> Add Customer</a></li>
+		    		<li><a href="list_customers.php"><i class="fa fa-circle-o"></i> List Customers</a></li>
+		  		</ul>
+			</li>
+			<li class="treeview">
+		  		<a href="#">
+		    		<i class="fa fa-cubes"></i> <span>Products</span>
 			    	<span class="pull-right-container">
 			      	<i class="fa fa-angle-left pull-right"></i>
 			    	</span>
@@ -28,7 +40,18 @@
 		  		<ul class="treeview-menu">
 		  			<li><a href="add_products.php"><i class="fa fa-circle-o"></i> Add Products</a></li>
 		    		<li><a href="list_products.php"><i class="fa fa-circle-o"></i> List Products</a></li>
-		    		<li><a href="add_category.php"><i class="fa fa-circle-o"></i> Add Category</a></li>
+		  		</ul>
+			</li>
+			<li class="treeview">
+		  		<a href="#">
+		    		<i class="fa fa-list"></i> <span>Categories</span>
+			    	<span class="pull-right-container">
+			      	<i class="fa fa-angle-left pull-right"></i>
+			    	</span>
+		  		</a>
+		  		<ul class="treeview-menu">
+				  <li><a href="add_category.php"><i class="fa fa-circle-o"></i> Add Category</a></li>
+				  <li><a href="list_categories.php"><i class="fa fa-circle-o"></i> List Categories</a></li>
 		  		</ul>
 			</li>
 			<li class="treeview">

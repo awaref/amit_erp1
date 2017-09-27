@@ -3,6 +3,7 @@ include 'includes/header.php';
 include 'includes/classes/config/Crud.php';
 include 'includes/classes/config/Validation.php';
 include 'includes/form_handlers/add_category_handlers.php';
+include 'includes/handlers/functions.php';
 ?>
 <?php include 'includes/main_header.php'; ?>
 <?php include 'includes/left_sidebar.php'; ?>
@@ -13,7 +14,7 @@ include 'includes/form_handlers/add_category_handlers.php';
 	<section class="content-header">
 	  	<h1>
 	  		ERP
-	    	<small>Add Product Category</small>
+	    	<small>Add Category</small>
 	  	</h1>
 	</section>
 	<!-- Main content -->
@@ -39,7 +40,8 @@ include 'includes/form_handlers/add_category_handlers.php';
 
 					    			<div class="form-group">
 								        <!-- <label for="input">-->
-								        <input type="text" name="cname" class="form-control" id="category_name" placeholder="Name" required>
+								        <input type="text" name="cname" class="form-control" id="category_name" placeholder="Name"
+										value="<?php check_str('cname') ?>" required>
 									</div>
 									<?php  
 										if (in_array("category name is required", $msg_array)) {
@@ -54,7 +56,8 @@ include 'includes/form_handlers/add_category_handlers.php';
 
 									<div class="form-group">
 								        <!-- <label for="input">-->
-										<input type="text" name="cdetails" class="form-control" id="category_details" placeholder="Details" required>
+										<input type="text" name="cdetails" class="form-control" id="category_details" placeholder="Details" 
+										value="<?php check_str('cdetails') ?>" required>
 									</div>
 									<?php  
 										if (in_array("category details is required", $msg_array)) {	

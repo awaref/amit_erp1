@@ -1,7 +1,7 @@
 <?php
 include 'includes/header.php';
 include 'includes/classes/config/Crud.php';
-include 'includes/classes/config/Validation.php'; ?>
+//include 'includes/classes/config/add_order_handlers.php'; ?>
 
 <?php include 'includes/main_header.php'; ?>
 <?php include 'includes/left_sidebar.php'; ?>
@@ -12,7 +12,7 @@ include 'includes/classes/config/Validation.php'; ?>
 		<section class="content-header">
 		  	<h1>
 		  		ERP
-		    	<small>List Products</small>
+		    	<small>List Customers</small>
 		  	</h1>
 		</section>
 		<!-- Main content -->
@@ -25,51 +25,47 @@ include 'includes/classes/config/Validation.php'; ?>
 			        	<div class="col-xs-12">
 			          		<div class="box">
 			            		<div class="box-header">
-			              			<h3 class="box-title">Products Data</h3>
+			              			<h3 class="box-title">Customers Data</h3>
 			            		</div>
-
-			            		<?php 
-
-			            			$crud = new Crud();
-			            			$result = $crud->getData('SELECT products.*,category.name as 
-									cat_name from products join category where category_id = category.id');
-			            		 ?>
-
 			            		<!-- /.box-header -->
 			            		<div class="box-body">
 				              		<table id="example1" class="table table-bordered table-striped">
 				                		<thead>
 				                			<tr>
 								                <th>ID</th>
-								                <th>Name</th>
-								                <th>Category</th>
-								                <th>price</th>
-								                <th>cost</th>
-												<th>Quantity</th>
-								                <th>Expire date</th>
+								                <th>First Name</th>
+								                <th>Last Name</th>
+								                <th>Phone</th>
+								                <th>Email</th>
+								                <th>Address</th>
+								                <th>City</th>
+								                <th>Country</th>
 				                			</tr>
 				                		</thead>
 				                		<tbody>
-				                		<?php 
-				                			foreach ($result as $product) {
-					                  			$id = $product['id'];
-												$name = $product['name'];
-												$desc = $product['description'];
-												$quantity = $product['quantity'];
-												$category_name = $product['cat_name'];
-					                  			$price = $product['price'];
-					                  			$cost = $product['cost'];
-					                  			$expire_date = $product['expire_date'];
+				                		<?php
+				                			$crud = new Crud();
+			            					$result = $crud->getAllData('customers');
+				                			foreach ($result as $order) {
+					                  			$customer_id = $order['id'];
+					                  			$firstname = $order['firstname'];
+					                  			$lastname = $order['lastname'];
+					                  			$phone = $order['phone'];
+					                  			$email = $order['email'];
+					                  			$address = $order['address'];
+					                  			$city = $order['city'];
+					                  			$country = $order['gov'];
 					                  		?>
 
-				                			<tr title="<?=  "Description : ".$desc; ?>">
-							                  	<td><?=  $id; ?></td>
-							                  	<td><?=  $name; ?></td>
-							                  	<td><?=  $category_name; ?></td>
-							                  	<td><?=  $price; ?></td>
-							                  	<td><?=  $cost; ?></td>
-												<td><?=  $quantity; ?></td>
-							                  	<td><?=  $expire_date; ?></td>
+				                			<tr>
+							                  	<td><?=  $customer_id; ?></td>
+							                  	<td><?=  $firstname; ?></td>
+							                  	<td><?=  $lastname; ?></td>
+							                  	<td><?=  $phone; ?></td>
+							                  	<td><?=  $email; ?></td>
+							                  	<td><?=  $address; ?></td>
+							                  	<td><?=  $city; ?></td>
+							                  	<td><?=  $country; ?></td>
 							                </tr>
 										<?php
 							            	}      	 

@@ -113,7 +113,12 @@ if (isset($_POST['add_user'])) {
 		VALUES ( '$fname', '$lname', '$username', '$password', '$email')";
 		
 		$result = $crud->executeQuery($query);
-		$success = 'New user: ' . $fname . " " . $lname . ' has been added successfully';
+		$_POST = array();
+		$_POST['success'] = '
+		<div class="alert alert-success success-msg" role="success">
+			User : '.$fname." ".$lname .' was added Successfully
+		</div>
+		';;
 	}
 
 }

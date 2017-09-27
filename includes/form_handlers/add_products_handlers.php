@@ -73,6 +73,7 @@ if (isset($_POST['add_product'])) {
 		$query = "INSERT INTO `products` VALUES ( NULL,'$cat', '$name', '$desc', '$price', '$cost','$quantity','$year-$month-$day',NULL,NULL)";
 		$result = $crud->executeQuery($query);
 		if ($result != false){
+			$_POST = array();
 			$_POST['success'] = '
 			<div class="alert alert-success success-msg" role="success">
 				Product : '.$name.' was added Successfully

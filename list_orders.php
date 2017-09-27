@@ -12,7 +12,7 @@ include 'includes/classes/config/Crud.php';
 		<section class="content-header">
 		  	<h1>
 		  		ERP
-		    	<small>List Users</small>
+		    	<small>List Orders</small>
 		  	</h1>
 		</section>
 		<!-- Main content -->

@@ -26,7 +26,7 @@ include 'includes/handlers/functions.php';
 			<div class="add-product-form">
 				<div class="col-md-6 col-md-offset-3">
 					<?= (isset($_POST['success']))? $_POST['success']:"" ;?>
-					<form action="add_products.php" method="POST" class="inline">
+					<form action="add_products.php" method="POST">
 						<div class="form-group">
 							<input type="text" name="name" class="form-control" placeholder="Product Name" required value="<?php check_str('name') ?>">
 						</div>
@@ -48,7 +48,7 @@ include 'includes/handlers/functions.php';
 						<div class="form-group">
 							<div class="row">
 					  	 	 	<div class="col-md-8 col-sm-12">
-									<select id="category" class="form-control select2" name="category" required">
+									<select id="category" class="form-control select2" name="category" required>
 										<?php include "includes/handlers/category_reload.php";?>
                 					</select>
 								</div>
@@ -74,7 +74,7 @@ include 'includes/handlers/functions.php';
 							}
 						?>
 					    <div class="form-group">
-							<input type="number" name="price" class="form-control" placeholder="Price" required value="<?php check_str('price') ?>">
+							<input type="text" name="price" class="form-control" placeholder="Price" required value="<?php check_str('price') ?>">
 						</div>
 						<?php  
 					    	if (in_array("price", $error_array)) {
@@ -92,7 +92,7 @@ include 'includes/handlers/functions.php';
 							}
 						?>
 						<div class="form-group">
-							<input type="number" name="cost" class="form-control" placeholder="Cost" required value="<?php check_str('cost') ?>">
+							<input type="text" name="cost" class="form-control" placeholder="Cost" required value="<?php check_str('cost') ?>">
 						</div>
 						<?php  
 					    	if (in_array("cost", $error_array)) {
@@ -173,11 +173,10 @@ include 'includes/handlers/functions.php';
 							}
 						?>
 						<div class="form-group">
-							<textarea class="form-control" rows="3" name="desc" placeholder="Enter a Product Description"><?php check_str('desc') ?></textarea>
+							<textarea class="form-control" rows="3" name="desc" placeholder="Enter a Product Description (Optional)"><?php check_str('desc') ?></textarea>
 						</div>
 						<button type="submit" name="add_product" class="btn btn-primary">Add Product</button>
 					</form>
-					<br/><br/><br/><br/>
 				</div>
 			</div>
 		</div>

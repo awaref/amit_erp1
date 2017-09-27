@@ -12,7 +12,7 @@ include 'includes/form_handlers/add_user_handlers.php';
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 	  	<h1>
-	  		ERP <?php echo $_SESSION['id'] ?>
+	  		ERP
 	    	<small>Add User</small>
 	  	</h1>
 	</section>
@@ -22,6 +22,7 @@ include 'includes/form_handlers/add_user_handlers.php';
 		<div class="row">
 			<div class="add-user-form">
 				<div class="col-md-6 col-md-offset-3">
+				<?= (isset($_POST['success']))? $_POST['success']:"" ;?>
 					<form action="add_user.php" method="POST">
 					    <div class="username">
 					    	<div class="row">
@@ -29,7 +30,7 @@ include 'includes/form_handlers/add_user_handlers.php';
 					    			<div class="form-group">
 								        <!-- <label for="input-firstname">First Name</label> -->
 								        <input type="text" name="fname" class="form-control" id="input-firstname" placeholder="First Name" 
-										value="<?= (isset($_POST['fname']) && !empty($error_array)? ($_POST['fname']):"" )?>" required>
+										value="<?= (isset($_POST['fname'])? ($_POST['fname']):"" )?>" required>
 					    			</div>
 					    			<?php  
 					    				if (in_array("First name must be between 2 and 25 characters", $error_array)) {
@@ -45,7 +46,7 @@ include 'includes/form_handlers/add_user_handlers.php';
 					    			<div class="form-group">
 								        <!-- <label for="input-lastname">Last Name</label> -->
 								        <input type="text" name="lname" class="form-control" id="input-lastname" placeholder="Last Name"
-										value="<?= (isset($_POST['lname']) && !empty($error_array)? ($_POST['lname']):"" )?>" required>
+										value="<?= (isset($_POST['lname'])? ($_POST['lname']):"" )?>" required>
 					    			</div>
 					    			<?php  
 					    				if (in_array("Last name must be between 2 and 25 characters", $error_array)) {
@@ -102,12 +103,12 @@ include 'includes/form_handlers/add_user_handlers.php';
 					    <div class="form-group">
 					        <!-- <label for="input-email">Email</label> -->
 					        <input type="email" name="email" class="form-control" id="input-email" placeholder="Email"
-							value="<?= (isset($_POST['email']) && !empty($error_array)? ($_POST['email']):"" )?>" required>
+							value="<?= (isset($_POST['email'])? ($_POST['email']):"" )?>" required>
 					    </div>
 					    <div class="form-group">
 					        <!-- <label for="input-email">Email</label> -->
 					        <input type="email" name="conf-email" class="form-control" id="input-email" placeholder="Confirm Email"
-							value="<?= (isset($_POST['conf-email']) && !empty($error_array)? ($_POST['conf-email']):"" )?>" required>
+							value="<?= (isset($_POST['conf-email'])? ($_POST['conf-email']):"" )?>" required>
 					    </div>
 					    <?php  
 		    				if (in_array("Email fields cannot be empty", $error_array)) {

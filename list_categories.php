@@ -1,7 +1,7 @@
 <?php
 include 'includes/header.php';
 include 'includes/classes/config/Crud.php';
-include 'includes/classes/config/Validation.php'; ?>
+//include 'includes/classes/config/add_order_handlers.php'; ?>
 
 <?php include 'includes/main_header.php'; ?>
 <?php include 'includes/left_sidebar.php'; ?>
@@ -12,7 +12,7 @@ include 'includes/classes/config/Validation.php'; ?>
 		<section class="content-header">
 		  	<h1>
 		  		ERP
-		    	<small>List Products</small>
+		    	<small>List Categories</small>
 		  	</h1>
 		</section>
 		<!-- Main content -->
@@ -25,16 +25,8 @@ include 'includes/classes/config/Validation.php'; ?>
 			        	<div class="col-xs-12">
 			          		<div class="box">
 			            		<div class="box-header">
-			              			<h3 class="box-title">Products Data</h3>
+			              			<h3 class="box-title">Categories Data</h3>
 			            		</div>
-
-			            		<?php 
-
-			            			$crud = new Crud();
-			            			$result = $crud->getData('SELECT products.*,category.name as 
-									cat_name from products join category where category_id = category.id');
-			            		 ?>
-
 			            		<!-- /.box-header -->
 			            		<div class="box-body">
 				              		<table id="example1" class="table table-bordered table-striped">
@@ -42,34 +34,23 @@ include 'includes/classes/config/Validation.php'; ?>
 				                			<tr>
 								                <th>ID</th>
 								                <th>Name</th>
-								                <th>Category</th>
-								                <th>price</th>
-								                <th>cost</th>
-												<th>Quantity</th>
-								                <th>Expire date</th>
+								                <th>Description</th>
 				                			</tr>
 				                		</thead>
 				                		<tbody>
-				                		<?php 
-				                			foreach ($result as $product) {
-					                  			$id = $product['id'];
-												$name = $product['name'];
-												$desc = $product['description'];
-												$quantity = $product['quantity'];
-												$category_name = $product['cat_name'];
-					                  			$price = $product['price'];
-					                  			$cost = $product['cost'];
-					                  			$expire_date = $product['expire_date'];
+				                		<?php
+				                			$crud = new Crud();
+			            					$result = $crud->getAllData('category');
+				                			foreach ($result as $order) {
+					                  			$category_id = $order['id'];
+					                  			$name = $order['name'];
+					                  			$description = $order['description'];
 					                  		?>
 
-				                			<tr title="<?=  "Description : ".$desc; ?>">
-							                  	<td><?=  $id; ?></td>
+				                			<tr>
+							                  	<td><?=  $category_id; ?></td>
 							                  	<td><?=  $name; ?></td>
-							                  	<td><?=  $category_name; ?></td>
-							                  	<td><?=  $price; ?></td>
-							                  	<td><?=  $cost; ?></td>
-												<td><?=  $quantity; ?></td>
-							                  	<td><?=  $expire_date; ?></td>
+							                  	<td><?=  $description; ?></td>
 							                </tr>
 										<?php
 							            	}      	 

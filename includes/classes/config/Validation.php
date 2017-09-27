@@ -73,7 +73,7 @@ class Validation
 		$data = ucfirst($data);
 		return $data;
 	}
-
+	
 }
 
 ?>
