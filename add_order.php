@@ -31,7 +31,7 @@ include 'includes/handlers/functions.php';
 				<?php
 					}
 				?>
-					<form action="add_order.php" method="POST" novalidate>
+					<form action="add_order.php" method="POST" >
 					    <div class="get_user_customer_id">
 					    	<div class="row">
 					    		<div class="col-md-6">
